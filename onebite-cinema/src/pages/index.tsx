@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <h1>ONEBITE CINEMA</h1>
+      <h2>ONEBITE CINEMA</h2>
     </>
   );
 }

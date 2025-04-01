@@ -1,0 +1,17 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto; /* 위-아래0, 좌-우 여백 자동 정렬 */
+  padding: 0px 20px;
+}
+
+.container > header {
+  font-size: 20px;
+}
+
+.container > header > a {
+  color: #e50914;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
