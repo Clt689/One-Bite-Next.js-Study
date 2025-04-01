@@ -5,7 +5,7 @@
 }
 
 .container > header {
-  font-size: 20px;
+  padding: 20px 0px;
 }
 
 .container > header > a {
