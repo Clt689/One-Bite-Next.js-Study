@@ -3,8 +3,23 @@ import SearchableLayout from "@/components/searchable-layout";
 import movie from "@/mock/movie.json";
 import MovieItem from "@/components/movie-item";
 import style from "./index.module.css";
+import fetchMovies from "@/lib/fetch-movies";
+import { InferGetServerSidePropsType } from "next";
 
-export default function Home() {
+export const getServerSideProps = async () => {
+  const allMovies = await fetchMovies();
+  // const recoMovies =
+
+  return {
+    props: {
+      allMovies,
+    },
+  };
+};
+
+export default function Home({
+  allMovies,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className={style.container}>
       <section>
@@ -19,7 +34,7 @@ export default function Home() {
       <section>
         <h3>등록된 모든 영화</h3>
         <div className={style.all_container}>
-          {movie.map((movie) => (
+          {allMovies.map((movie) => (
             <MovieItem key={movie.id} {...movie} />
           ))}
         </div>
