@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import SearchableLayout from "@/components/searchable-layout";
-import movie from "@/mock/movie.json";
 import MovieItem from "@/components/movie-item";
 import style from "./index.module.css";
 import fetchMovies from "@/lib/fetch-movies";
