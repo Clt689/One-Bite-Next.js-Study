@@ -8,8 +8,10 @@ import { InferGetServerSidePropsType } from "next";
 import fetchRandomMovies from "@/lib/fetch-random-movies";
 
 export const getServerSideProps = async () => {
-  const allMovies = await fetchMovies();
-  const recoMovies = await fetchRandomMovies();
+  const [allMovies, recoMovies] = await Promise.all([
+    fetchMovies(),
+    fetchRandomMovies(),
+  ]);
 
   return {
     props: {
