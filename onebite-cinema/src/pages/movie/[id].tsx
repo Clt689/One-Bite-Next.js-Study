@@ -1,12 +1,28 @@
-import fetchOneMovies from "@/lib/fetch-one-movie";
+import fetchMovies from "@/lib/fetch-movies";
+import fetchOneMovie from "@/lib/fetch-one-movie";
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
+import { useRouter } from "next/router";
 import style from "./[id].module.css";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getStaticPaths = async () => {
+  const movies = await fetchMovies();
+  return {
+    paths: movies.map(({ id }) => ({
+      params: { id: id.toString() },
+    })),
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params!.id;
-  const movie = await fetchOneMovies(Number(id));
+  const movie = await fetchOneMovie(Number(id));
+
+  if (!movie) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
@@ -15,22 +31,13 @@ export const getServerSideProps = async (
   };
 };
 
-export default function Page({
-  movie,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  if (!movie) {
-    return "문제가 발생했어요. 다시 시도해 주세요";
-  }
-  const {
-    title,
-    subTitle,
-    company,
-    runtime,
-    description,
-    posterImgUrl,
-    releaseDate,
-    genres,
-  } = movie;
+export default function Page({ movie }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
+
+  if (router.isFallback) return "로딩 중입니다";
+  if (!movie) return "문제가 발생했습니다 다시 시도하세요";
+  const { id, title, subTitle, company, runtime, description, posterImgUrl, releaseDate, genres } =
+    movie;
 
   return (
     <div className={style.container}>
