@@ -7,16 +7,14 @@ import { ReactNode } from "react";
 import style from "./index.module.css";
 
 export const getStaticProps = async () => {
-  const [allBooks, recoBooks] = await Promise.all([
-    fetchBooks(),
-    fetchRandomBooks(),
-  ]);
+  const [allBooks, recoBooks] = await Promise.all([fetchBooks(), fetchRandomBooks()]);
 
   return {
     props: {
       allBooks,
       recoBooks,
     },
+    revalidate: 3,
   };
 };
 
