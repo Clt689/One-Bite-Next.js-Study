@@ -2,6 +2,7 @@ import BookItem from "@/components/book-item";
 import SearchableLayout from "@/components/searchable-layout";
 import fetchBooks from "@/lib/fetch-books";
 import { BookData } from "@/styles/types";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 
@@ -36,6 +37,12 @@ export default function Page() {
 
   return (
     <div>
+      <Head>
+        <title>한입북스 - 검색 결과</title>
+        <meta property="og:image" content="/thumbnail.png" />
+        <meta property="og:title" content="한입북스"></meta>
+        <meta property="og:description" content="한입북스 - 검색 결과"></meta>
+      </Head>
       {books.map((book) => (
         <BookItem key={book.id} {...book} />
       ))}
