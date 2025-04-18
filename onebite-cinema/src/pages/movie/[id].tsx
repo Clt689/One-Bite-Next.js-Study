@@ -51,7 +51,7 @@ export default function Page({ movie }: InferGetStaticPropsType<typeof getStatic
       </>
     );
   if (!movie) return "문제가 발생했습니다 다시 시도하세요";
-  const { id, title, subTitle, company, runtime, description, posterImgUrl, releaseDate, genres } =
+  const { title, subTitle, company, runtime, description, posterImgUrl, releaseDate, genres } =
     movie;
 
   return (
