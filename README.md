@@ -5,7 +5,7 @@
 <br>
 
 💻 이정환(Winterlood)님의 [한 입 크기로 잘라 먹는 Next.js(v15)](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%ED%81%AC%EA%B8%B0-nextjs/dashboard)를 공부하는 레포지토리입니다.
-- 한 입 챌린지 5기(Next.js)에 참여 중입니다.
+- 한 입 챌린지 5기(Next.js)에 참여했습니다.
 
 <br>
 
